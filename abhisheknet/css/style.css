@@ -1,0 +1,100 @@
+BODY {
+	COLOR: #000;
+	background-color: #D6DDEF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-RIGHT: 0px;
+	FONT-SIZE: small;
+	PADDING-TOP: 0px
+}
+A IMG {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+:link IMG {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+:visited IMG {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+A {
+	COLOR: #990000;
+	TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: none
+}
+B {
+	FONT-WEIGHT: bold
+}
+.tCenter {
+	TEXT-ALIGN: center
+}
+
+.logo {
+	TEXT-ALIGN: center; COLOR: #fff; FONT-WEIGHT: bold ; background-color:#fff;
+}
+.logo A {
+	COLOR: #fff
+}
+H2 {
+	font-family:Verdana, Geneva, sans-serif;
+	TEXT-ALIGN: center;
+	PADDING-BOTTOM: 2px;
+	PADDING-LEFT: 2px;
+	PADDING-RIGHT: 2px;
+	COLOR: #000000;
+	FONT-SIZE: 17px;
+	PADDING-TOP: 2px;
+	background-color: #33A6CF;
+}
+H2 A {
+	COLOR: #fff
+}
+.odd {
+	PADDING-BOTTOM: 4px; MARGIN: 1px 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 0px; VERTICAL-ALIGN: middle; PADDING-TOP: 2px
+}
+.even {
+	PADDING-BOTTOM: 4px; MARGIN: 1px 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 0px; VERTICAL-ALIGN: middle; PADDING-TOP: 2px
+}
+.odd {
+	BACKGROUND: #fff
+}
+.even {
+	BACKGROUND: #eeeeee
+}
+
+.bkmk {
+	TEXT-ALIGN: center;
+	PADDING-BOTTOM: 6px;
+	PADDING-LEFT: 4px;
+	PADDING-RIGHT: 4px;
+	COLOR: #f00;
+	PADDING-TOP: 6px;
+	background-color: #92D5FF;
+	border: 2px dashed #000000;
+}
+.path {
+	BORDER-BOTTOM: #33a6cf 1px dotted; FONT-WEIGHT: bold
+}
+.path a
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000033;
+	text-decoration: none;
+	
+}
+.path a:hover
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #990000;
+	text-decoration: none;
+}
+.catRow {
+	BORDER-BOTTOM: #dddddd 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; BACKGROUND: #f5f5f5; PADDING-TOP: 3px
+}
