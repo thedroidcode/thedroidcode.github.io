@@ -1,69 +1,786 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
-<meta charset="UTF-8">
-<title>Abhishek Thakur</title>
-<meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=1.0, user-scalable=no" />
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Arvo'>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="td.png" type="image/x-icon">
+  <link rel="apple-touch-icon" href="td.png">
+  <title>TheDroid - Abhishek Thakur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css" rel="stylesheet">
+  <script>tailwind.config = { theme: { extend: { colors: { primary: "#164555", accent: "#f47359", brandDark: "#0a0a0a", glassDarkBg: "rgba(10,10,10,0.6)", lightText: "#f0f0f0", mediumText: "#a0a0a0", codeBg: "#1e2a38" }, borderRadius: { xl: "1rem", "2xl": "1.5rem" } } } }</script>
+  <style>
+    body {
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-a:link {
-  text-decoration: none;
-}
-.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
-}
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(244, 115, 89, 0.8) 20%, transparent 80%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      display: block;
+    }
 
-.page_404  img{ width:100%;}
+    .custom-cursor--hover {
+      transform: scale(1.5);
+      background: radial-gradient(circle, rgba(244, 115, 89, 1) 30%, transparent 80%);
+    }
 
-.four_zero_four_bg{
- 
- background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: 400px;
-    background-position: center;
- }
- 
- 
- .four_zero_four_bg h1{
- font-size:80px;
- }
- 
-  .four_zero_four_bg h3{
-			 font-size:80px;
-			 }
-			 
-			 .link_404{			 
-	color: #fff!important;
-    padding: 10px 20px;
-    background: #39ac31;
-    margin: 20px 0;
-    display: inline-block;}
-	.contant_box_404{ margin-top:-50px;}
-</style>
+    @media (hover: none),
+    (pointer: coarse) {
+      .custom-cursor {
+        display: none !important;
+      }
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      color: #f0f0f0;
+      position: relative;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 6rem;
+      height: 0.2rem;
+      background-color: #f47359;
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+    }
+
+    .card {
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+      border: none;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(244, 115, 89, 0.3);
+    }
+
+    #mobile-menu {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .menu-open {
+      transform: translateX(0);
+    }
+
+    .menu-closed {
+      transform: translateX(-100%);
+    }
+
+    .watermark-cube {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20rem;
+      height: 20rem;
+      perspective: 1000px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+    .cube {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .face {
+      position: absolute;
+      width: 20rem;
+      height: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12rem;
+      /* Increased for better scaling */
+      background: rgba(27, 27, 27, 1);
+      color: #f0f0f0;
+      filter: grayscale(100%);
+    }
+
+    /* Cube faces */
+    .front {
+      transform: rotateY(0deg) translateZ(10rem);
+    }
+
+    .back {
+      transform: rotateY(180deg) translateZ(10rem);
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(10rem);
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(10rem);
+    }
+
+    .top {
+      transform: rotateX(90deg) translateZ(10rem);
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(10rem);
+    }
+
+
+
+    .navbar-logo {
+      height: 40px;
+      width: auto;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .navbar-logo:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    .code-particle-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      background: radial-gradient(circle at center, rgba(22, 69, 85, 0.2) 0, transparent 70%);
+    }
+
+    .code-particle {
+      position: absolute;
+      color: rgba(244, 115, 89, 0.4);
+      font-family: "Source Code Pro", monospace;
+      font-size: 14px;
+      opacity: 0.5;
+      pointer-events: none;
+      animation: float 15s linear infinite;
+      will-change: transform, opacity;
+      /* Optimize performance */
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh);
+        /* Start from bottom */
+        opacity: 0.5;
+      }
+
+      50% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-100vh);
+        /* Move to top */
+        opacity: 0.5;
+      }
+    }
+
+    .blinking-cursor {
+      font-weight: 700;
+      font-size: inherit;
+      color: #fffb00;
+      animation: blink 0.8s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+    }
+
+    .section {
+      position: relative;
+      z-index: 10;
+      min-height: 50vh;
+    }
+
+    @keyframes blinkCursor {
+
+      0%,
+      49% {
+        border-right-color: rgba(244, 115, 89, 0.75);
+      }
+
+      50%,
+      100% {
+        border-right-color: transparent;
+      }
+    }
+
+    @keyframes scanline {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 0 100%;
+      }
+    }
+
+    .cyber-button {
+      position: relative;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: scanline 1s linear;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+    }
+
+    .cyber-button:hover {
+      box-shadow: 0 0 15px rgba(244, 115, 89, 0.5);
+    }
+
+    .cyber-button:focus {
+      box-shadow: 0 0 0 3px rgba(244, 115, 89, 0.5);
+    }
+
+    /* Main Text Styling */
+    .cyber-button .text-shadow {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+      z-index: 2;
+      padding-right: 0.5ch;
+      border-right: 2px solid rgba(244, 115, 89, 0.75);
+      animation: blinkCursor 1s step-end infinite;
+    }
+
+    /* Subtle overlay on hover */
+    .glitch-overlay {
+      background: linear-gradient(to bottom,
+          transparent,
+          rgba(244, 115, 89, 0.05) 50%,
+          transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .cyber-button:hover .glitch-overlay {
+      opacity: 1;
+      animation: scanline 2s linear infinite;
+    }
+
+    /* ------------------------------------------------------ */
+    .card .relative {
+      position: relative;
+    }
+
+    .card .absolute.top-0.right-0 {
+      z-index: 10;
+      /* Ensure the overlay is above the main image and gradient */
+    }
+
+    /* Ensure the section blends with the existing theme */
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: #f0f0f0;
+      /* Matches text-lightText from the projects section */
+    }
+
+    .client-logo img {
+      filter: brightness(0.9);
+      /* Slightly dim default state for contrast */
+    }
+
+    .client-logo img:hover {
+      filter: brightness(1) drop-shadow(0 0 10px rgba(251, 146, 60, 0.7));
+      /* Glow follows logo shape */
+    }
+  </style>
+
 </head>
-<body translate="no">
-<section class="page_404">
-<div class="container ">
-<div class="row">
-<div class="col-sm-12 ">
-<div class="col-sm-10 col-sm-offset-1  text-center">
-<div class="four_zero_four_bg">
-<h1 class="text-center ">Whoops !</h1>
-</div>
-<div class="contant_box_404">
-<h3 class="h2">
-I Am A Little Bit Busy Now,I'll Fix This Site Soon...
-</h3>
-<p>For Now Explore Something New...</p>
-<p><b>By-Abhishek</b></p>
-<a href="game.html" class="link_404">Play Block Ninja</a>
-<a href="/abhisheknet/index.html" class="link_404">Or Visit The First Site By Me</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+
+<body class="bg-brandDark text-lightText">
+  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+    <a href="#projects"
+      class="cyber-button inline-flex items-center px-6 py-3 bg-glassDarkBg text-accent font-mono font-bold rounded-xl border border-accent/20 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-accent"
+      aria-label="Explore Projects Section">
+      <span class="relative z-10 text-shadow whitespace-nowrap">Explore Projects</span>
+      <span
+        class="absolute bottom-0 left-0 w-full h-0.5 bg-accent transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+      <span
+        class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+      <span class="absolute inset-0 glitch-overlay"></span>
+    </a>
+  </div>
+  <div class="code-particle-bg" id="code-particle-bg"></div>
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <header class="bg-glassDarkBg backdrop-blur-lg fixed w-full z-50">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <img src="td.png" alt="Portfolio Logo" class="navbar-logo">
+        <span class="text-white font-semibold text-lg">The<span style="color: #f47359;">Droid</span></span>
+      </a>
+      <div class="hidden md:flex space-x-6">
+        <a href="#hero" class="text-mediumText hover:text-accent transition duration-300">Home</a>
+        <a href="#about" class="text-mediumText hover:text-accent transition duration-300">About</a>
+        <a href="#projects" class="text-mediumText hover:text-accent transition duration-300">Projects</a>
+      </div>
+      <button id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu"
+        class="md:hidden text-mediumText hover:text-accent">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="md:hidden bg-glassDarkBg absolute top-full left-0 w-full menu-closed">
+      <a href="#hero"
+        class="block px-6 py-3 text-mediumText hover:bg-accent hover:text-brandDark transition duration-300">Home</a>
+      <a href="#about"
+        class="block px-6 py-3 text-mediumText hover:bg-accent hover:text-brandDark transition duration-300">About</a>
+      <a href="#projects"
+        class="block px-6 py-3 text-mediumText hover:bg-accent hover:text-brandDark transition duration-300">Projects</a>
+    </div>
+  </header>
+  <main>
+    <section id="hero" class="section min-h-screen py-20 px-6 flex relative"
+      style="z-index: 8; background:linear-gradient(to bottom right,#122a33,#000000,#4b1f16)">
+      <div id="cube-container" class="watermark-cube">
+        <div class="cube">
+          <div class="face front"></div>
+          <div class="face back"></div>
+          <div class="face right"></div>
+          <div class="face left"></div>
+          <div class="face top"></div>
+          <div class="face bottom"></div>
+        </div>
+      </div>
+      <div class="container mx-auto flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0">
+        <div class="w-full lg:w-1/2 flex justify-center order-2 lg:order-1">
+          <div class="p-4 font-mono text-sm sm:text-2xl text-lightText overflow-x-auto">
+            <span class="text-accent">const</span> developer = {<br>
+               name: <span class="text-accent">"Abhishek Thakur"</span>,<br>
+               code-name: <span class="text-accent">"TheDroid"</span>,<br>
+               role: <span class="text-accent">"Full-Stack Engineer & Tech Generalist"</span>,<br>
+               skills: [ <span class="text-accent"><span id="typing-skill"></span><span
+                class="blinking-cursor">|</span></span>],<br>
+               description: <span class="text-accent">"Deep coding skills and broad tool expertise across design,
+              devops, and system architecture."</span><br>
+            };<br>
+          </div>
+        </div>
+        <div class="w-full lg:w-1/2 flex justify-center order-1 lg:order-2">
+          <img src="v.png" alt="Code Illustration" class="w-5/6 h-auto z-10">
+        </div>
+      </div>
+
+    </section>
+    <section id="about" class="section py-20 px-6">
+      <div class="container mx-auto card p-8 md:p-12">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <!-- Image on the left -->
+          <div class="flex justify-center items-center">
+            <img src="v1.png" alt="Code Setup" class="w-4/5 h-auto object-cover">
+          </div>
+
+          <!-- About Me on the right -->
+          <div class="text-lg text-mediumText leading-relaxed">
+            <h2 class="section-title">About Me</h2>
+            <p class="mb-4">
+              I'm Abhishek Thakur, a versatile full-stack engineer with a passion for crafting robust digital solutions.
+              My tech journey began in 2010 with mobile WAP sites and has since evolved to include modern web and app
+              development.
+            </p>
+            <p class="mb-4">
+              With 15+ years of experience, I specialize in building everything from lightweight mobile apps to complex,
+              API-driven platforms. My core skills include PHP, Python, MySQL, and Android development. I’m equally at
+              home designing RESTful APIs, deploying scalable systems with Docker, or optimizing workflows using Git and
+              CI/CD pipelines.
+            </p>
+            <p>
+              Outside of coding, I’m an open-source contributor and a mentor to budding developers. My mantra? Keep
+              learning, simplify complexity, and build solutions that last.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="projects" class="section py-20 px-6">
+      <div class="container mx-auto">
+        <h2 class="section-title">Signature Projects</h2>
+        <p class="text-mediumText mb-6">Highlighting a selection of impactful projects, each single-handedly created and
+          developed. From robust HRMS systems to tamper-proof Android apps and IoT dataloggers, these reflect a passion
+          for building practical, end-to-end solutions.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card">
+            <div class="relative overflow-hidden rounded-t-2xl">
+              <img src="hrms.png" alt="Project 1"
+                class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brandDark/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-0 right-0 w-24 h-24 rounded-bl-2xl overflow-hidden shadow-lg bg-[#f47359] flex items-center justify-center">
+                <div class="flex flex-col items-center">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                    class="text-white mb-1">
+                    <path
+                      d="M20.501 6.028V6h-.02A10.28 10.28 0 0 0 4.519 6H4.5v.028a10.26 10.26 0 0 0 0 12.944V19h.02a10.28 10.28 0 0 0 15.962 0h.021v-.028a10.26 10.26 0 0 0 0-12.944zM13 6V3.272A4.53 4.53 0 0 1 15.54 6zm2.935 1a16.8 16.8 0 0 1 .853 5H13V7zM12 3.272V6H9.46A4.53 4.53 0 0 1 12 3.272M12 7v5H8.212a16.8 16.8 0 0 1 .853-5zm-4.787 5H3.226a9.23 9.23 0 0 1 1.792-5h2.984a18 18 0 0 0-.79 5zm0 1a18 18 0 0 0 .789 5H5.018a9.23 9.23 0 0 1-1.792-5zm1 0H12v5H9.065a16.8 16.8 0 0 1-.853-5zM12 19v2.728A4.53 4.53 0 0 1 9.46 19zm1 2.728V19h2.54A4.53 4.53 0 0 1 13 21.728M13 18v-5h3.788a16.8 16.8 0 0 1-.853 5zm4.787-5h3.987a9.23 9.23 0 0 1-1.792 5h-2.984a18 18 0 0 0 .79-5zm0-1a18 18 0 0 0-.789-5h2.984a9.23 9.23 0 0 1 1.792 5zm1.352-6h-2.501a8.5 8.5 0 0 0-1.441-2.398A9.3 9.3 0 0 1 19.139 6M9.803 3.602A8.5 8.5 0 0 0 8.363 6H5.86a9.3 9.3 0 0 1 3.942-2.398zM5.861 19h2.501a8.5 8.5 0 0 0 1.441 2.398A9.3 9.3 0 0 1 5.861 19m9.336 2.398A8.5 8.5 0 0 0 16.637 19h2.502a9.3 9.3 0 0 1-3.942 2.398" />
+                    <path fill="none" d="M0 0h24v24H0z" />
+                  </svg>
+                  <span class="text-white font-semibold">WebApp</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold mb-2 text-lightText font-mono">Complete HRMS Solution</h3>
+              <p class="text-mediumText mb-3 text-sm">A powerful yet intuitive HRMS solution designed to streamline
+                human resource management. This system simplifies complex HR tasks with a user-friendly interface,
+                offering robust features like employee management, real-time attendance tracking, seamless leave
+                management, automated payslip generation, and customizable modules tailored to your organization's
+                needs. Built for efficiency and scalability, it empowers businesses to manage their workforce
+                effortlessly.For this I used php and hybrid python scripts.</p>
+              <div class="flex flex-wrap mb-3">
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Employee Management</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Attendance Tracking</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Leave Management</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Payslip Generation</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Customized Modules</span>
+              </div>
+              <a href="#"
+                class="inline-flex items-center text-accent hover:text-orange-400 font-medium font-mono text-sm">View
+                more details <span class="ml-1">→</span></a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="relative overflow-hidden rounded-t-2xl">
+              <img src="attendance.png" alt="Project 2"
+                class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brandDark/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-0 right-0 w-24 h-24 rounded-bl-2xl overflow-hidden shadow-lg bg-[#f47359] flex items-center justify-center">
+                <div class="flex flex-col items-center">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                    class="text-white mb-1">
+                    <path
+                      d="M11.115 4.667a.846.846 0 1 1-1.692 0 .846.846 0 0 1 1.692 0m2.539.846a.846.846 0 1 0 0-1.692.846.846 0 0 0 0 1.692" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M6.354.47a.75.75 0 0 1 1.061 0l1.228 1.227a6.26 6.26 0 0 1 3.215-.883h.207c1.175 0 2.274.322 3.215.883L16.508.47a.75.75 0 0 1 1.06 1.06l-1.091 1.092a6.27 6.27 0 0 1 1.853 3.943q.323-.108.683-.11a2.16 2.16 0 0 1 2.16 2.16v5.077a2.16 2.16 0 0 1-2.82 2.058v1.865c0 .913-.445 1.721-1.129 2.222v1.47a2.442 2.442 0 1 1-4.884 0v-.942h-.757v.943a2.442 2.442 0 1 1-4.884 0v-1.471a2.75 2.75 0 0 1-1.128-2.222V15.75a2.16 2.16 0 0 1-2.82-2.058V8.615a2.16 2.16 0 0 1 2.842-2.05 6.27 6.27 0 0 1 1.853-3.943L6.354 1.53a.75.75 0 0 1 0-1.06m.965 7.485a.25.25 0 0 0-.248.25v9.41a1.25 1.25 0 0 0 1.245 1.25h7.291a1.25 1.25 0 0 0 1.245-1.25v-9.41a.25.25 0 0 0-.248-.25zm9.287-1.5h.203a4.79 4.79 0 0 0-4.744-4.14h-.207a4.79 4.79 0 0 0-4.744 4.14zM13.84 21.308v-.943h1.884v.943a.942.942 0 1 1-1.884 0m-5.526-.943h1.769v.943a.942.942 0 1 1-1.884 0v-.943zm10.699-6.012a.66.66 0 0 1-.66-.658V8.612a.66.66 0 0 1 1.32.003v5.077a.66.66 0 0 1-.66.66M5.57 8.61a.66.66 0 0 0-1.32.004v5.077a.66.66 0 0 0 1.32.005z" />
+                  </svg>
+                  <span class="text-white font-semibold">Android</span>
+                </div>
+
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold mb-2 text-lightText font-mono">Attendance App</h3>
+              <p class="text-mediumText mb-3 text-sm">A user-friendly yet powerful hybrid Android app built with
+                Flutter and native Kotlin code. Designed to work seamlessly with any physical biometric devices with
+                shared database, this app
+                ensures smooth attendance tracking even in offline mode. When connectivity is restored, all data syncs
+                automatically—making it reliable in any environment. Ideal for organizations seeking a secure, flexible,
+                and efficient attendance solution. It has tamper protection like no GPS spoofing or time tampering.</p>
+              <div class="flex flex-wrap mb-3">
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Offline First Design</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Realtime GPS Tracking</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">History Log</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Tamper Proof</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Customizable Modules</span>
+              </div>
+              <a href="#"
+                class="inline-flex items-center text-accent hover:text-orange-400 font-medium font-mono text-sm">View
+                more details <span class="ml-1">→</span></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="relative overflow-hidden rounded-t-2xl">
+              <img src="iot.jpg" alt="Project 3"
+                class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brandDark/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+              </div>
+              <div
+                class="absolute top-0 right-0 w-24 h-24 rounded-bl-2xl overflow-hidden shadow-lg bg-[#f47359] flex items-center justify-center">
+                <div class="flex flex-col items-center">
+                  <svg width="24" height="24" viewBox="0 0 30 30" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                    class="text-white mb-1">
+                    <path
+                      d="M30 19h-4v-4h-2v9H8V8h9V6h-4V2h-2v4H8a2 2 0 0 0-2 2v3H2v2h4v6H2v2h4v3a2 2 0 0 0 2 2h3v4h2v-4h6v4h2v-4h3a2.003 2.003 0 0 0 2-2v-3h4Z" />
+                    <path
+                      d="M26 2a4.004 4.004 0 0 0-4 4 3.96 3.96 0 0 0 .567 2.02L19.586 11H11v10h10v-8.586l2.98-2.98A3.96 3.96 0 0 0 26 10a4 4 0 0 0 0-8m-7 17h-6v-6h6Zm7-11a2 2 0 1 1 2-2 2 2 0 0 1-2 2" />
+                    <path data-name="&lt;Transparent Rectangle&gt;" style="fill:none" d="M0 0h32v32H0z" />
+                  </svg>
+                  <span class="text-white font-semibold">IoT Dev</span>
+                </div>
+
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-semibold mb-2 text-lightText font-mono">Datalogger & Monitoring</h3>
+              <p class="text-mediumText mb-3 text-sm">A compact and efficient datalogging system for real-time and
+                historical energy monitoring. It communicates with smart energy meters over Modbus RS-485 using byte or
+                raw hex requests, logging responses to embedded ROM or an external SD card. The system supports hybrid
+                storage and syncs data to the cloud via HTTP APIs. It features a user-friendly dashboard for both online
+                and offline monitoring. Built using ESP-32 with MicroPython and Beaglebone running Python both
+                headlessly.</p>
+              <div class="flex flex-wrap mb-3">
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Modbus Reading</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Local Database</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Remote Syncronization</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Graphical Interface</span>
+                <span class="bg-codeBg text-accent px-2 py-1 rounded-lg text-xs mr-2 mb-2">Hybrid Logging</span>
+              </div>
+              <a href="#"
+                class="inline-flex items-center text-accent hover:text-orange-400 font-medium font-mono text-sm">View
+                more details <span class="ml-1">→</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <a href="#projects"
+            class="cyber-button inline-flex items-center px-6 py-3 bg-glassDarkBg text-accent font-mono font-bold rounded-xl border border-accent/20 relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Explore Projects">
+            <span class="relative z-10 text-shadow whitespace-nowrap">More Projects</span>
+            <span
+              class="absolute bottom-0 left-0 w-full h-0.5 bg-accent transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+            <span
+              class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <span class="absolute inset-0 glitch-overlay"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="clients" class="section py-20 px-6 bg-brandDark/5">
+      <div class="container mx-auto">
+        <h2 class="section-title">Ecosystem Impact</h2>
+        <p class="text-mediumText mb-6">Creating solutions for organizations and contributing to tech communities like
+          XDA and CyanogenMod, I drive innovation across projects and platforms.</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
+          <div class="client-logo flex items-center justify-center">
+            <img src="xda.png" alt="Client 1 Logo"
+              class="w-24 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+          <div class="client-logo flex items-center justify-center">
+            <img src="photo.png" alt="Client 6 Logo"
+              class="w-32 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+          <div class="client-logo flex items-center justify-center">
+            <img src="cyanogen.png" alt="Client 2 Logo"
+              class="w-44 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+          <div class="client-logo flex items-center justify-center">
+            <img src="xposed.png" alt="Client 6 Logo"
+              class="w-32 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+          <div class="client-logo flex items-center justify-center">
+            <img src="xiaomi.png" alt="Client 6 Logo"
+              class="w-32 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+          <div class="client-logo flex items-center justify-center">
+            <img src="agni.png" alt="Client 3 Logo"
+              class="w-40 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+          <div class="client-logo flex items-center justify-center">
+            <img src="ubu.png" alt="Client 4 Logo"
+              class="w-24 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+          <div class="client-logo flex items-center justify-center">
+            <img src="cirqular.svg" alt="Client 5 Logo"
+              class="w-44 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+          <div class="client-logo flex items-center justify-center">
+            <img src="ocwe.webp" alt="Client 6 Logo"
+              class="w-32 h-24 object-contain transition-all duration-300 hover:filter hover:drop-shadow-[0_0_10px_rgba(251,146,60,0.7)] hover:scale-105">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-glassDarkBg backdrop-blur-lg text-slate-400 py-12 px-6 relative z-10">
+    <div class="container mx-auto text-center">
+      <p class="mb-3 font-mono">Connect with me:</p>
+      <div class="flex justify-center space-x-6 mb-8">
+        <a href="#" target="_blank" class="text-mediumText hover:text-accent transition duration-300 hover:scale-110">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd"
+              d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+        <a href="#" target="_blank" class="text-mediumText hover:text-accent transition duration-300 hover:scale-110">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd"
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.838 9.491.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+      <p class="font-mono">© <span id="currentYear"></span> itsabhishek (TheDroid). All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const icons = ["devicon-python-plain", "devicon-c-plain", "devicon-cplusplus-plain", "devicon-html5-plain", "devicon-css3-plain", "devicon-javascript-plain", "devicon-react-original", "devicon-flutter-plain", "devicon-nodejs-plain", "devicon-mysql-plain", "devicon-docker-plain", "devicon-git-plain", "devicon-apache-plain", "devicon-nginx-plain", "devicon-visualstudio-plain", "devicon-linux-plain", "devicon-windows8-plain", "devicon-android-plain", "devicon-arduino-plain", "devicon-figma-plain", "devicon-photoshop-plain", "devicon-aftereffects-plain", "devicon-premierepro-plain"],
+      skills = ["Python", "C", "C++", "HTML5", "CSS3", "JavaScript", "React", "Flutter", "Node.js", "MySQL", "Docker", "Git", "Apache", "Nginx", "Visual Studio", "Linux", "Windows", "Android", "Arduino", "Figma", "Photoshop", "After Effects", "Premiere Pro", "and more..."],
+      codeSymbols = ["#", "$", "%", "&", "*", "@", "^", "~", "=", "+", "-", "/", "//", "**", "==", "!=", "<", ">", "<=", ">=", "|", "!", ":", ";", ".", ",", "(", ")", "{", "}", "[", "]", "<>", "</>"];
+
+    function initMobileMenu() {
+      let e = document.getElementById("mobile-menu-button"),
+        n = document.getElementById("mobile-menu");
+      e && n && (e.addEventListener("click", () => {
+        let t = n.classList.contains("menu-open");
+        e.setAttribute("aria-expanded", !t), n.classList.toggle("menu-open"), n.classList.toggle("menu-closed")
+      }), document.querySelectorAll("#mobile-menu a").forEach(e => {
+        e.addEventListener("click", () => {
+          n.classList.add("menu-closed"), n.classList.remove("menu-open"), e.setAttribute("aria-expanded", "false")
+        })
+      }))
+    }
+
+    function initCustomCursor() {
+      let e = document.getElementById("custom-cursor");
+      e && (document.addEventListener("mousemove", n => {
+        e.style.left = `${n.clientX}px`, e.style.top = `${n.clientY}px`, e.style.display = "block"
+      }), document.querySelectorAll("a, button").forEach(n => {
+        n.addEventListener("mouseenter", () => e.classList.add("custom-cursor--hover")), n.addEventListener("mouseleave", () => e.classList.remove("custom-cursor--hover"))
+      }))
+    }
+
+    function initWatermarkIcon() {
+      const cube = document.querySelector(".cube");
+      const faces = document.querySelectorAll(".face");
+      if (!cube || !faces) return;
+
+      // Define rotation angles for each face
+      const rotations = [
+        { x: 0, y: 0 },    // Front
+        { x: 0, y: 90 },   // Right
+        { x: 0, y: 180 },  // Back
+        { x: 0, y: -90 },  // Left
+        { x: 90, y: 0 },   // Top
+        { x: -90, y: 0 }   // Bottom
+      ];
+
+      let currentRotationIndex = 0;
+      let currentIconStartIndex = 0;
+
+      function updateIcons() {
+        // Clear all icon classes from faces
+        faces.forEach(face => {
+          icons.forEach(icon => face.classList.remove(icon));
+        });
+
+        // Assign new icons to faces (up to 6 at a time)
+        faces.forEach((face, i) => {
+          const iconIndex = (currentIconStartIndex + i) % icons.length;
+          face.classList.add(icons[iconIndex]);
+        });
+      }
+
+      function rotateCube() {
+        const { x, y } = rotations[currentRotationIndex];
+        cube.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
+        currentRotationIndex = (currentRotationIndex + 1) % rotations.length;
+
+        // After a full rotation (6 faces), update icons
+        if (currentRotationIndex === 0) {
+          currentIconStartIndex = (currentIconStartIndex + 6) % icons.length;
+          updateIcons();
+        }
+      }
+
+      // Initial setup
+      updateIcons();
+      rotateCube();
+      // Rotate every 2.5 seconds
+      setInterval(rotateCube, 2500);
+    }
+
+    function initMobileMenu() {
+      let e = document.getElementById("mobile-menu-button"),
+        n = document.getElementById("mobile-menu");
+      e && n && (e.addEventListener("click", () => {
+        let t = n.classList.contains("menu-open");
+        e.setAttribute("aria-expanded", !t), n.classList.toggle("menu-open"), n.classList.toggle("menu-closed")
+      }), document.querySelectorAll("#mobile-menu a").forEach(e => {
+        e.addEventListener("click", () => {
+          n.classList.add("menu-closed"), n.classList.remove("menu-open"), e.setAttribute("aria-expanded", "false")
+        })
+      }))
+    }
+
+    function initCustomCursor() {
+      let e = document.getElementById("custom-cursor");
+      e && (document.addEventListener("mousemove", n => {
+        e.style.left = `${n.clientX}px`, e.style.top = `${n.clientY}px`, e.style.display = "block"
+      }), document.querySelectorAll("a, button").forEach(n => {
+        n.addEventListener("mouseenter", () => e.classList.add("custom-cursor--hover")), n.addEventListener("mouseleave", () => e.classList.remove("custom-cursor--hover"))
+      }))
+    }
+
+    function initCodeParticles() {
+      let bg = document.getElementById("code-particle-bg");
+      if (bg) {
+        for (let i = 0; i < 50; i++) {
+          let particle = document.createElement("div");
+          particle.className = "code-particle";
+          particle.textContent = codeSymbols[Math.floor(Math.random() * codeSymbols.length)];
+          particle.style.left = `${100 * Math.random()}%`; // Random horizontal position
+          particle.style.top = `${100 * Math.random()}%`; // Random vertical start
+          particle.style.fontSize = `${10 + 10 * Math.random()}px`; // Random size
+          particle.style.animationDelay = `-${50 * Math.random()}s`; // Negative delay for staggered start
+          bg.appendChild(particle);
+        }
+      }
+    }
+
+    function setFooterYear() {
+      let e = document.getElementById("currentYear");
+      e && (e.textContent = (new Date).getFullYear())
+    }
+
+    function typeSkill() {
+      let e = document.getElementById("typing-skill"),
+        n = 0,
+        t = 0,
+        i = !1;
+      ! function o() {
+        let l = `"${skills[n]}"`;
+        i ? (t--, e.textContent = l.substring(0, t), 0 === t ? (i = !1, n = (n + 1) % skills.length, setTimeout(o, 500)) : setTimeout(o, 50)) : (t++, e.textContent = l.substring(0, t), t === l.length ? (i = !0, setTimeout(o, 1e3)) : setTimeout(o, 100))
+      }()
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      initMobileMenu(), initCustomCursor(), initWatermarkIcon(), initCodeParticles(), setFooterYear(), typeSkill()
+    });</script>
 </body>
+
 </html>
